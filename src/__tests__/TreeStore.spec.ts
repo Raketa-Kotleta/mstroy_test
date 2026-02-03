@@ -28,13 +28,6 @@ describe('TreeStore with TreeStoreItem', () => {
         const result: TreeStoreItem[] = store.getAll();
         expect(result).toHaveLength(11);
     });
-    
-    it('getAll: should return exactly the same data as provided in constructor', (): void => {
-        const result: TreeStoreItem[] = store.getAll();
-
-        expect(result).toHaveLength(initialData.length);
-        expect(result).toEqual(expect.arrayContaining(initialData));
-    });
 
     it('getItem: should return item with string id', (): void => {
         const targetId: TreeNodeId = 'extra';

@@ -23,7 +23,7 @@
         new TreeStore(useDataStore().data)
     );
     const data: ComputedRef<TreeStoreItem[]> = computed(() => {
-        return treeStore.getAll();
+        return treeStore.getAllCurrentState();
     });
 
     const getRowId: GetRowIdFunc<TreeStoreItem> = (params) => {
