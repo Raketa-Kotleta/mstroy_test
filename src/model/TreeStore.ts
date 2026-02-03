@@ -28,6 +28,11 @@ export default class TreeStore<T extends ITreeNode> {
         return this.initialData;
     }
 
+    //Возвращает все элемены текущего состояния хранилища 
+    getAllCurrentState(): T[] {
+        return Array.from(this.treeMap.values());
+    }
+
     getItem(id: TreeNodeId): T | undefined {
         return this.treeMap.get(id);
     }
