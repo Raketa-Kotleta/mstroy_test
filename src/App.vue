@@ -8,7 +8,6 @@
 
 <script setup lang="ts">
     import TreeStoreTable from '@/components/TreeStoreTable.vue';
-
 </script>
 
 <style>

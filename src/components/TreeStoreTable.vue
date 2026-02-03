@@ -1,13 +1,13 @@
 <template>
     <ag-grid-vue
-        :row-data="treeStore.getAll()"
+        :row-data="data"
         :column-defs="colDef"
         :tree-data="true"
         :tree-data-parent-id-field="parentId"
         :get-row-id="getRowId"
         @row-group-opened="updateRowNumbers"
         group-display-type="custom"
-        style="height: 600px"
+        style="height: 75vh"
     ></ag-grid-vue>
 </template>
 
@@ -17,9 +17,14 @@
     import { useDataStore } from '@/stores/data';
     import type { ColDef, GetRowIdFunc, RowGroupOpenedEvent } from 'ag-grid-enterprise';
     import { AgGridVue } from 'ag-grid-vue3';
-    import { reactive, ref, type Reactive, type Ref } from 'vue';
+    import { computed, reactive, ref, type ComputedRef, type Reactive, type Ref } from 'vue';
 
-    const treeStore: Reactive<TreeStore<TreeStoreItem>> = reactive(new TreeStore(useDataStore().data));
+    const treeStore: Reactive<TreeStore<TreeStoreItem>> = reactive(
+        new TreeStore(useDataStore().data)
+    );
+    const data: ComputedRef<TreeStoreItem[]> = computed(() => {
+        return treeStore.getAll();
+    });
 
     const getRowId: GetRowIdFunc<TreeStoreItem> = (params) => {
         return params.data.id.toString();
@@ -43,7 +48,6 @@
             showRowGroup: true,
             cellRendererParams: {
                 suppressCount: true,
-                cellRendererSelector: 'agGroupCellRenderer',
             },
             flex: 1,
             resizable: false,
