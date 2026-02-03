@@ -14,7 +14,7 @@ dist-ssr
 coverage
 *.local
 .prettierrc
-prettierrc.json
+.prettierrc.json
 
 # Editor directories and files
 .vscode/*
